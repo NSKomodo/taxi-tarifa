@@ -92,6 +92,10 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *dict = [defaults dictionaryRepresentation];
     for (id key in dict) {
+        if ([key isEqualToString:@"fromLat"] || [key isEqualToString:@"fromLon"]) {
+            continue;
+        }
+        
         [defaults removeObjectForKey:key];
     }
     [defaults setObject:@"NO" forKey:@"newUser"];

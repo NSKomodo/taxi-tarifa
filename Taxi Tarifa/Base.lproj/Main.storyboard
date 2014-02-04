@@ -433,7 +433,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GJ7-tr-COd" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Principal" image="taxiTab" id="u1e-5L-l1D"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="kWY-wN-6t1">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="kWY-wN-6t1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -454,7 +454,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="egD-IE-QHg" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Acerca de" image="aboutTab" id="Z7h-1E-pvt"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="YKS-lp-9Xr">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="YKS-lp-9Xr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="1" green="0.77254901960784317" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

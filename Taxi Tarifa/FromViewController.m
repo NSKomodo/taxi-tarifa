@@ -159,6 +159,19 @@
     }
 }
 
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    if([identifier isEqualToString:@"toDestinationSegue"]) {
+        if (_mapView.myLocation.coordinate.latitude == 0.0 && _mapView.myLocation.coordinate.longitude == 00 && _pinFrom.position.latitude == 0.0 && _pinFrom.position.longitude == 0) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Taxi Tarifa" message:@"Por favor, elige un punto de partida o espera a que la aplicación encuentre la dirección de tu ubicación." delegate:nil cancelButtonTitle:@"Accept" otherButtonTitles:nil, nil];
+            [alert show];
+            
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
 #pragma mark - Google Map View delegate methods
 
 - (void)mapView:(GMSMapView *)mapView didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
@@ -168,6 +181,7 @@
         [self clearMapAnnotations];
         
         _pinFrom = [GMSMarker markerWithPosition:coordinate];
+        _pinFrom.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:31.0/255.0 green:174.0/255.0 blue:227.0/255.0 alpha:1.0]];
         _pinFrom.map = _mapView;
         
         [_removePinButton setHidden:NO];
@@ -178,7 +192,7 @@
         NSLog(@"Pin set at: %f,%f", coordinate.latitude, coordinate.longitude);
     } else {
         //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Taxi Tarifa" message:NSLocalizedString(@"PIN_NOT_IN_AREA", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"ACCEPT", nil) otherButtonTitles:nil, nil];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Taxi Tarifa" message:@"You can only drop pins inside Ecuador's area." delegate:nil cancelButtonTitle:@"Accept" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Taxi Tarifa" message:@"Solo puedes elegir ubicaciones dentro de Ecuador." delegate:nil cancelButtonTitle:@"Accept" otherButtonTitles:nil, nil];
         [alert show];
     }
 }

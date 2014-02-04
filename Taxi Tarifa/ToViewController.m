@@ -206,7 +206,7 @@
         }
     } else {
         //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Taxi Tarifa" message:NSLocalizedString(@"PIN_NOT_IN_AREA", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"ACCEPT", nil) otherButtonTitles:nil, nil];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Taxi Tarifa" message:@"You can only drop pins inside Ecuador's area." delegate:nil cancelButtonTitle:@"Accept" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Taxi Tarifa" message:@"Solo puedes elegir ubicaciones dentro de Ecuador." delegate:nil cancelButtonTitle:@"Accept" otherButtonTitles:nil, nil];
         [alert show];
     }
 }
