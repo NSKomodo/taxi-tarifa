@@ -34,6 +34,11 @@
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"headerIcon"]];
     [_fromAddressLabel setAdjustsFontSizeToFitWidth:YES];
     [self setupMapView];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (![defaults objectForKey:@"newUser"]) {
+        [_overlayView setHidden:NO];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -126,11 +131,20 @@
     }];
 }
 
+- (IBAction)helpAction:(id)sender {
+    BOOL toggle = ![_overlayView isHidden];
+    [_overlayView setHidden:toggle];
+}
+
 - (IBAction)removePinAction:(id)sender {
     [self clearMapAnnotations];
 }
 
 - (IBAction)dismissOverlayAction:(id)sender {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@"NO" forKey:@"newUser"];
+    [defaults synchronize];
+    
     [_overlayView setHidden:YES];
 }
 

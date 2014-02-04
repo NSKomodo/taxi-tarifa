@@ -24,6 +24,7 @@
 
 @property BOOL firstTimeLaunch;
 
+- (IBAction)helpAction:(id)sender;
 - (IBAction)removePinAction:(id)sender;
 - (IBAction)dismissOverlayAction:(id)sender;
 

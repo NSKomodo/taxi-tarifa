@@ -57,7 +57,13 @@
     float distancefare = cleanDistance * kmValue;
     
     float preFare = start + ((timeFare + distancefare) / 3.0);
-    float fare = preFare < 1.00 ? 1.00 : preFare;
+    float fare = 0.00;
+    
+    if (dayFare) {
+        fare = preFare < 1.00 ? 1.00 : preFare;
+    } else {
+        fare = preFare < 1.10 ? 1.10 : preFare;
+    }
     
     return [NSString stringWithFormat:@"$%.02f*", fare];
 }
@@ -67,9 +73,19 @@
 }
 
 - (IBAction)dayFareAction:(id)sender {
+    [_dayFareButton setImage:[UIImage imageNamed:@"diurnaButtonOn"] forState:UIControlStateNormal];
+    [_nightFareButton setImage:[UIImage imageNamed:@"nocturnaButtonOff"] forState:UIControlStateNormal];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [_fareLabel setText:[self calculateFareWithDistance:[defaults objectForKey:@"distance"] time:[defaults objectForKey:@"duration"] dayFare:YES]];
 }
 
 - (IBAction)nightFareAction:(id)sender {
+    [_dayFareButton setImage:[UIImage imageNamed:@"diurnaButtonOff"] forState:UIControlStateNormal];
+    [_nightFareButton setImage:[UIImage imageNamed:@"nocturnaButtonOn"] forState:UIControlStateNormal];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [_fareLabel setText:[self calculateFareWithDistance:[defaults objectForKey:@"distance"] time:[defaults objectForKey:@"duration"] dayFare:NO]];
 }
 
 - (IBAction)newFareAction:(id)sender {
@@ -78,6 +94,7 @@
     for (id key in dict) {
         [defaults removeObjectForKey:key];
     }
+    [defaults setObject:@"NO" forKey:@"newUser"];
     [defaults synchronize];
     
     [self.navigationController popToRootViewControllerAnimated:YES];
