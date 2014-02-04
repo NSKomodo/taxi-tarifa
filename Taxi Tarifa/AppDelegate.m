@@ -8,12 +8,14 @@
 
 #import "AppDelegate.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import "AFNetworkActivityIndicatorManager.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     [GMSServices provideAPIKey:@"AIzaSyAh1LAhm5h4zs8sUeXhCGa5f9CeKzLvpCc"];
     
     return YES;

@@ -50,16 +50,18 @@ static NSString *kMDDirectionsURL = @"http://maps.googleapis.com/maps/api/direct
     });
 }
 
-- (void)fetchedData:(NSData *)data
-       withSelector:(SEL)selector
-       withDelegate:(id)delegate{
-  
-  NSError* error;
-  NSDictionary *json = [NSJSONSerialization
-                        JSONObjectWithData:data
-                                   options:kNilOptions
-                                     error:&error];
-  [delegate performSelector:selector withObject:json];
+- (void)fetchedData:(NSData *)data withSelector:(SEL)selector withDelegate:(id)delegate{
+    if (data) {
+        NSError *error;
+        NSDictionary *json = [NSJSONSerialization
+                              JSONObjectWithData:data
+                              options:kNilOptions
+                              error:&error];
+        [delegate performSelector:selector withObject:json];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Taxi Tarifa" message:@"Cannot contact the Google Directions API. Route between points will not be drawn." delegate:nil cancelButtonTitle:@"Accept" otherButtonTitles:nil, nil];
+        [alert show];
+    }
 }
 
 @end
